@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="recherche-catalogue.css" />
+		<title>Catalogue</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- JQUERY -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <!-- popper.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <!-- Le JavaScript de Bootstrap -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div id="div0" class= "container">
+             
+            <!-- Nav bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <img class="logo" src="images/library-logo.png"> 
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" href="#">Catalogue</a>
+                    <a class="nav-item nav-link disabled" href="#"> </a>
+                    <a class="btn btn-outline-dark" id="cart" href="modal-cart.html" target="_blank" role="button">Panier<span id="cart-number-article" class="badge badge-light">0</span></a>
+                    <div id="members">
+                        <div id="member-id">
+                             <button id="signUp-link" data-toggle="modal" data-target="#signUpModal" class="btn btn-link">S'inscrire</button>
+                             <button id="login-link" data-toggle="modal" data-target="#loginModal" class="btn btn-link">S'identifier</button> 
+                        </div> 
+                    </div>
+                    
+                  </div>
+                </div>
+              </nav>
+            
+              <!-- ALL MODALS -->
+
+            <!-- Modal SignUp -->
+            <div class="modal" id="signUpModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">S'inscrire</h5>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="userName">Nom</label>
+                                    <input type="text" placeholder="Nom" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userSurname">Prénom</label>
+                                    <input type="text" placeholder="Prénom" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userMail">Email</label>
+                                    <input type="text" placeholder="email" name="email" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userAdress">Adresse</label>
+                                    <input type="text" placeholder="ex : 5 rue de la gare" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userZip">Code postal</label>
+                                    <input type="text" placeholder="ex : 13009" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userCity">Ville</label>
+                                    <input type="text" placeholder="ex : Marseille" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userPassword">Mot de passe</label>
+                                    <input type="password" placeholder="Entrez un mot de passe" name="psw" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userPassword">Confirmez mot de passe</label>
+                                    <input type="password" placeholder="Entrez de nouveau votre mot de passe" name="psw-repeat" class="form-control" required>
+                                </div>
+                                <label>
+                                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Se souvenir de moi
+                                </label>
+                            
+                                <p>En créant un compte vous apourvez les <a href="#" style="color:dodgerblue">termes & conditions</a>.</p>
+                            
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" id="valider" data-dismiss="modal" onclick="signIn()">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal login -->
+            <div class="modal" id="loginModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Login</h5>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="username">Email utilisateur</label>
+                                    <input type="text" placeholder="Votre email" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Mot de passe</label>
+                                    <input type="password" placeholder="Mot de passe" class="form-control">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" id="valider" data-dismiss="modal" onclick="connexion()">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal borrow book-->
+            <div class="modal" id="borrowModal">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Confirmer l'emprunt</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Souhaitez-vous emprunter ce livre ?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" onclick="users[userNumber].borrow(titleBookName)" data-dismiss="modal">Emprunter</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            <!--Image-->
+            <div id="banniere">
+                    <p> <img class="img-fluid" src="images/library1.png" alt="BU"/> </p>
+            </div>
+            <div class="tab">
+                <button class="tablinks" id="defaultOpen" onclick="searchType(event, 'simple-search')">Recherche simple</button>
+                <button class="tablinks" onclick="searchType(event, 'advanced-search')">Recherche avancée</button>
+            </div>
+            
+            <!--Recherche simple -->
+            <div id="simple-search" class="tabcontent">
+                <select name="idx" class="masthead_search">
+                    <option value="title">Titre</option>
+                    <option value="author">Auteur</option>
+                    <option value="genre">Genre</option>
+                    <option value="year">Année</option>
+                    <option value="editor">Edition</option>
+                    <option value="cote">Cote</option>   
+                </select>
+                <input class="userResearch" placeholder="Saisissez votre recherche" type="text" />
+                <button id="validerR" class="btn-valider, btn btn-secondary" onclick = "mySearch(false); borrowButtonAvailable()">Valider</button>
+            </div>
+
+            <!--Recherche avancée -->
+            <div id="advanced-search" class="tabcontent">
+                
+                <label >Titre :</label>
+                <input class="userResearch" placeholder="Saisissez votre recherche" type="text" />
+                <select name="genre" id="genre-select" class="search-select">
+                    <option value="">Genre</option>
+                </select>
+                <select name="editor" id="editor-select" class="search-select">
+                    <option value="">Editeur</option>
+                </select>
+                <select name="author" id="author-select" class="search-select">
+                    <option value="">Auteur</option>
+                </select>
+                <button class="btn-valider, btn btn-secondary" onclick = "mySearch(true); borrowButtonAvailable()">Valider</button>
+            </div>
+
+            <!-- Résultat Recherche -->
+            <p id= "Message-recherche"></p>
+            <div id="book-information"></div>
+
+        </div>
+    </body>
+	
+    <script	src="recherche-catalogue.js"></script>
+    <script	src="user.js"></script>
+    
+</html>
